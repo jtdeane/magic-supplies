@@ -46,7 +46,7 @@
     <!-- Message Queue Listener -->
     <bean id="orderProcessingEventListener" class="cogito.online.messaging.OrderProcessingMessageListener"/>    
 
-    <!-- The Spring queue message listener container configuration -->
+    <!-- Queue message listener container configuration -->
     <jms:listener-container
         container-type="default"
         connection-factory="connectionFactory"
@@ -58,12 +58,26 @@
     <bean id="alertProcessingTopicListenerA" class="cogito.online.messaging.AlertProcessingTopicListener"/>
     <bean id="alertProcessingTopicListenerB" class="cogito.online.messaging.AlertProcessingTopicListener"/>     
 
-    <!-- The Spring topic message listeners container configuration -->    
+    <!-- Topic message listeners container configuration -->    
 	<jms:listener-container 
 	   connection-factory="connectionFactory" 
 	   destination-type="topic">
 	    <jms:listener destination="magic.alerts" ref="alertProcessingTopicListenerA" method="onMessage"/>
 	    <jms:listener destination="magic.alerts" ref="alertProcessingTopicListenerB" method="onMessage"/>
-	</jms:listener-container>      
+	</jms:listener-container>
+
+    
+    <!-- Advanced Messagin Exercise -->
+
+    <!-- Alternate Message Queue Listener -->	
+    <bean id="singleOrderProcessingEventListener" class="cogito.online.messaging.SingleOrderProcessingMessageListener"/>
+    
+    <!-- Alternate queue message listener container configuration -->
+    <jms:listener-container
+        container-type="default"
+        connection-factory="connectionFactory"
+        acknowledge="auto">
+        <jms:listener destination="magic.order" ref="singleOrderProcessingEventListener" method="onMessage" />
+    </jms:listener-container>    	    
     
 </beans>
