@@ -2,7 +2,6 @@ package cogito.online.messaging;
 
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.jms.Message;

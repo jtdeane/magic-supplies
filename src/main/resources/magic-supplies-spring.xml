@@ -20,7 +20,9 @@
 	    <entry key="Marbles" value="8"/>
         <entry key="Rabbit" value="45"/>
         <entry key="Top Hat" value="100"/>
-        <entry key="Rainbow Scarf" value="15"/>  
+        <entry key="Rainbow Scarf" value="15"/>
+        <entry key="Elder Wand" value="0"/>
+        <entry key="Resurrection Stone" value="0"/>       
 	</util:map>
 	
     <util:map id="discounts">

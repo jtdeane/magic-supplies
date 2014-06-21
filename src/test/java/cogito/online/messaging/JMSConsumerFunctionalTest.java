@@ -44,10 +44,10 @@ public class JMSConsumerFunctionalTest extends TestCase {
     }
     
     /**
-     * Creates Crayon Package
+     * Testing Receiving the package
      * @throws Exception
      */
-    public void testReceivePackage() throws Exception { 
+    public void testReceiveOrder() throws Exception { 
     	
     	Message message = consumer.receive();
     	

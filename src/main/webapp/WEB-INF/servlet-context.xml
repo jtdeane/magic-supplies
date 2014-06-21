@@ -66,8 +66,7 @@
 	    <jms:listener destination="magic.alerts" ref="alertProcessingTopicListenerB" method="onMessage"/>
 	</jms:listener-container>
 
-    
-    <!-- Advanced Messagin Exercise -->
+    <!-- Advanced Messaging Exercise -->
 
     <!-- Alternate Message Queue Listener -->	
     <bean id="singleOrderProcessingEventListener" class="cogito.online.messaging.SingleOrderProcessingMessageListener"/>

@@ -48,7 +48,7 @@ public class JMSProducerFunctionalTest extends TestCase {
      * Sends Magic Order to Test Queue
      * @throws Exception
      */
-    public void testCreatePackage() throws Exception {
+    public void testCreateOrder() throws Exception {
         
         //Create message
         TextMessage textMessage = session.createTextMessage();
