@@ -46,14 +46,7 @@ public class BatchServicesTest {
 		
 		//to view output
 		Thread.sleep(3000);
-	}	
-	
-	@Test
-	public void testJavaForkJoin() throws Exception {
-		
-		batchServices.javaForkJoin(getOrdersFile().getOrders());
 	}
-
 	
     /**
      * Converts Batch XML to Pojo

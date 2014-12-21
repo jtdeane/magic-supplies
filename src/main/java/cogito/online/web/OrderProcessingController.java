@@ -49,6 +49,22 @@ public class OrderProcessingController {
 	}
 	
 	/**
+	 * Simple Health Check
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "health", method=RequestMethod.GET)
+	@ResponseBody
+	public String getHealth (HttpServletResponse response) throws Exception {
+		
+		logger.debug("Processing Health Check ");
+		
+	    response.setContentType("text/plain");
+	    response.setCharacterEncoding("UTF-8");
+		
+		return "All Systems Go";
+	}	
+	
+	/**
 	 * Accepts in a batch of orders and processes them
 	 * @param orders
 	 * @return String
