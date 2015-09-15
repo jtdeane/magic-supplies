@@ -13,10 +13,8 @@ import javax.xml.bind.Unmarshaller;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import cogito.online.model.Order;
-import cogito.online.processing.BatchServices;
 
 /**
  * Listens for Magic Supply Order (Single)
@@ -36,9 +34,6 @@ public class SingleOrderProcessingMessageListener implements MessageListener {
 	public SingleOrderProcessingMessageListener () throws Exception {
 		jaxbContext = JAXBContext.newInstance(Order.class);
 	}
-	
-	@Autowired
-	BatchServices batchServices;
 
 	@Override
 	public void onMessage (Message message) {
@@ -53,8 +48,6 @@ public class SingleOrderProcessingMessageListener implements MessageListener {
 			
 			List<Order> orderList = new ArrayList<Order>();
 			orderList.add(order);
-		
-			batchServices.javaFireAndForget(orderList);
 			
 			logger.debug("Processed Magic Order:" + order);
 			

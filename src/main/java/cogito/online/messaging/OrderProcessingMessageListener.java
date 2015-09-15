@@ -11,10 +11,8 @@ import javax.xml.bind.Unmarshaller;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import cogito.online.model.Orders;
-import cogito.online.processing.BatchServices;
 
 /**
  * Listens for Magic Supply Orders
@@ -34,9 +32,6 @@ public class OrderProcessingMessageListener implements MessageListener {
 	public OrderProcessingMessageListener () throws Exception {
 		jaxbContext = JAXBContext.newInstance(Orders.class);
 	}
-	
-	@Autowired
-	BatchServices batchServices;
 
 	@Override
 	public void onMessage (Message message) {
@@ -48,8 +43,6 @@ public class OrderProcessingMessageListener implements MessageListener {
 			TextMessage textMessage = (TextMessage) message;
 				
 			orders = xmlToPOJO(textMessage.getText());
-		
-			batchServices.javaFireAndForget(orders.getOrders());
 			
 			logger.debug("Processed Magic Order:" + orders);
 			

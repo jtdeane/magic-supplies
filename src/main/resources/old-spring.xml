@@ -2,8 +2,8 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
     xmlns:context="http://www.springframework.org/schema/context" 
-    xmlns:mvc="http://www.springframework.org/schema/mvc"
-    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"    xmlns:util="http://www.springframework.org/schema/util"
+
     xmlns:oxm="http://www.springframework.org/schema/oxm"
     xmlns:jms="http://www.springframework.org/schema/jms"
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -13,38 +13,16 @@
         http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm-4.0.xsd
         http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-4.0.xsd">
 
-    <context:component-scan base-package="cogito.online" />
-    <context:annotation-config/> 
-	
-	<oxm:jaxb2-marshaller id="jaxb2Marshaller">
-	   <oxm:class-to-be-bound name="cogito.online.model.Order" />
-	   <oxm:class-to-be-bound name="cogito.online.model.Orders" />
-	</oxm:jaxb2-marshaller>
     
-    <bean id="marshallingHttpMessageConverter"
-        class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
-        <property name="marshaller" ref="jaxb2Marshaller" />
-        <property name="unmarshaller" ref="jaxb2Marshaller" />
-    </bean>
-     
-    <bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
-    
-    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-        <property name="messageConverters">
-            <util:list id="beanList">
-                <ref bean="jsonConverter" />
-                <ref bean="marshallingHttpMessageConverter" />
-            </util:list>
-        </property>
-    </bean>
+    <!-- This configurations are NOT used. Moved to MagicSuppliesConfiguration -->        
     
     <!-- ActiveMQ Connection Factory -->
     <bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
         <property name="brokerURL" value="tcp://localhost:61616" />    
     </bean> 
 
-    <!-- Message Queue Listener -->
-    <bean id="orderProcessingEventListener" class="cogito.online.messaging.OrderProcessingMessageListener"/>    
+    <!-- Message Queue Listener --> 
+    <bean id="orderProcessingEventListener" class="cogito.online.messaging.OrderProcessingMessageListener"/>   
 
     <!-- Queue message listener container configuration -->
     <jms:listener-container
@@ -54,21 +32,19 @@
         <jms:listener destination="magic.orders" ref="orderProcessingEventListener" method="onMessage" />
     </jms:listener-container>
     
-    <!-- Message Topic Listeners -->    
-    <bean id="alertProcessingTopicListenerA" class="cogito.online.messaging.AlertProcessingTopicListener"/>
-    <bean id="alertProcessingTopicListenerB" class="cogito.online.messaging.AlertProcessingTopicListener"/>     
+    <!-- Message Topic Listener  -->  
+    <bean id="alertProcessingTopicListener" class="cogito.online.messaging.AlertProcessingTopicListener"/>    
 
-    <!-- Topic message listeners container configuration -->    
+    <!-- Topic message listeners container configuration  -->   
 	<jms:listener-container 
 	   connection-factory="connectionFactory" 
 	   destination-type="topic">
 	    <jms:listener destination="magic.alerts" ref="alertProcessingTopicListenerA" method="onMessage"/>
-	    <jms:listener destination="magic.alerts" ref="alertProcessingTopicListenerB" method="onMessage"/>
 	</jms:listener-container>
 
     <!-- Advanced Messaging Exercise -->
 
-    <!-- Alternate Message Queue Listener -->	
+    <!-- Alternate Message Queue Listener 	-->
     <bean id="singleOrderProcessingEventListener" class="cogito.online.messaging.SingleOrderProcessingMessageListener"/>
     
     <!-- Alternate queue message listener container configuration -->
@@ -77,6 +53,5 @@
         connection-factory="connectionFactory"
         acknowledge="auto">
         <jms:listener destination="magic.order" ref="singleOrderProcessingEventListener" method="onMessage" />
-    </jms:listener-container>    	    
-    
+    </jms:listener-container>    
 </beans>
