@@ -1,16 +1,12 @@
 magic-supplies
 =======================
 
-Built with Java 8+, and Spring Boot (1.2.5.RELEASE)
+Built with Java 8+, and Spring Boot (1.3.3.RELEASE)
 
 Tested with JUnit (4.11)
 
 Executes with Spring Boot
 
-`java -jar magic-supplies-1.0.0.jar`
+`mvn spring-boot:run -Drun.arguments="-Xmx256m,-Xms128m"`
 
-Runs against ActiveMQ (5.12.0) using JMeter (2.13); requires activemq-all-5.12.0.jar in lib directory
-
->Note that viewing message content in ActiveMQ Web Console is incompatible with Java 8 but will be fixed in ActiveMQ 5.13 (upgrading Jetty to 9+). Until then use the hawtio (http://hawt.io) to view message content.
-
->Also note that mvn spring-boot:run seems to be broken. Actively working on resolution. 
+Runs against ActiveMQ (5.13.1) using JMeter (2.13); requires activemq-all-5.13.1.jar in JMeter lib directory
