@@ -59,6 +59,7 @@ public class JMSProducerFunctionalTest extends TestCase {
         
         //set custom properties
         textMessage.setStringProperty("token", "6gj#dga99jf");
+        textMessage.setStringProperty("mime-type", "application/xml");
         textMessage.setStringProperty("company", "Aladin's Magic Shop");
         
         producer.send(textMessage);
