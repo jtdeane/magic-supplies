@@ -19,7 +19,7 @@ public class AlertProcessingTopicListener implements MessageListener {
 			
 			TextMessage textMessage = (TextMessage) message;
 			
-			logger.debug("Magic Alert:" + textMessage.getText());
+			logger.info("Magic Alert:" + textMessage.getText());
 			
 		} catch (Exception e) {
 			

@@ -23,7 +23,7 @@ public class SingleOrderProcessingMessageListener implements MessageListener {
 			
 			TextMessage textMessage = (TextMessage) message;
 			
-			logger.debug("Processed Magic Order: \n" + textMessage.getText());
+			logger.info("Processed Magic Order: \n" + textMessage.getText());
 			
 		} catch (Exception e) {
 			
