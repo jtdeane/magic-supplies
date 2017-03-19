@@ -1,9 +1,9 @@
 magic-supplies
 =======================
 
-Built with Java 8+, and Spring Boot (1.4.0.RELEASE)
+Built with Java 8+, and Spring Boot (1.5.2.RELEASE)
 
-Tested with JUnit (4.11)
+Tested with JUnit (4.12)
 
 Executes with Spring Boot
 
