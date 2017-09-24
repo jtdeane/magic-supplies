@@ -16,7 +16,7 @@ services:
      - "61616:61616"
      - "8161:8161"
   hawtio:
-    hostname: event-ops
+    hostname: magic-ops
     image: "indigo/hawtio"
     ports:
      - "8090:8090"       
