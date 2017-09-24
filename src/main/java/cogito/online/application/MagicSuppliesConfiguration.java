@@ -3,10 +3,9 @@ package cogito.online.application;
 import javax.jms.ConnectionFactory;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.listener.SimpleMessageListenerContainer;
 import org.springframework.jms.listener.adapter.MessageListenerAdapter;
 
@@ -14,14 +13,16 @@ import cogito.online.messaging.AlertProcessingTopicListener;
 import cogito.online.messaging.OrderProcessingMessageListener;
 import cogito.online.messaging.SingleOrderProcessingMessageListener;
 
-@Configuration
-@EnableAutoConfiguration
-@ComponentScan ("cogito.online")
+@SpringBootApplication
 public class MagicSuppliesConfiguration {
+	
+	//default - tcp://localhost:61616
+	@Value("${spring.activemq.broker-url}")
+	private String brokerUrl;
 	
     @Bean
     ConnectionFactory connectionFactory() {
-        return new ActiveMQConnectionFactory("tcp://localhost:61616");
+        return new ActiveMQConnectionFactory(brokerUrl);
     }
     
     @Bean
