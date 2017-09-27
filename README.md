@@ -29,7 +29,7 @@ View Hawtio
 
 ### Spring-Boot Execution
 
-Build Magic-Supplies
+Build Magic Supplies
 
 `mvn clean install`
 
@@ -52,5 +52,7 @@ View ActiveMQ (_admin/admin_)
 ### Testing via JMeter
 
 JMeter (2.13) - requires activemq-all-5.14.0.jar in JMeter lib directory
+
+Open JMeter file and execute the tests
 
 `../magic-supplies/test/jmeter/Mock Message Publisher.jmx`
