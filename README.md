@@ -1,7 +1,7 @@
 magic-supplies
 =======================
 
-Built with Java 8+, and Spring Boot (1.5.6.RELEASE)
+Built with Java 8+, and Spring Boot (2.0.3.RELEASE)
 
 Tested with JUnit (4.12)
 
@@ -17,7 +17,7 @@ Start Docker
 
 View Application
 
-`http://localhost:8080/info`
+`http://localhost:8080/actuator/info`
 
 View ActiveMQ (_admin/admin_)
 
@@ -43,7 +43,7 @@ OR
 
 View Application
 
-`http://localhost:8080/info`
+`http://localhost:8080/actuator/info`
 
 View ActiveMQ (_admin/admin_)
 
@@ -55,4 +55,4 @@ JMeter (2.13) - requires activemq-all-5.14.0.jar in JMeter lib directory
 
 Open JMeter file and execute the tests
 
-`../magic-supplies/test/jmeter/Mock Message Publisher.jmx`
+`../magic-supplies/src/test/jmeter/Mock Message Publisher.jmx`
